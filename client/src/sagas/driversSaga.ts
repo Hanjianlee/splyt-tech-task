@@ -8,7 +8,7 @@ import { userSelector, UserInterface } from "../reducers/usersReducer";
 function* getDrivers(action: ActionInterface) {
   try {
     const user: UserInterface = yield select(userSelector as any);
-    const { nearestHQLocation, driverCount } = user;
+    const { HQLocation, driverCount } = user;
     if (Number(driverCount) < 1)
       return put({ type: DRIVERS.GET_NEAREST_DRIVERS.FAILED, payload: {} });
     const response: AxiosResponse = yield call(get as any, {
@@ -16,8 +16,8 @@ function* getDrivers(action: ActionInterface) {
       route: "getDrivers",
       query: {
         count: driverCount,
-        longitude: nearestHQLocation.longitude,
-        latitude: nearestHQLocation.latitude,
+        longitude: HQLocation.longitude,
+        latitude: HQLocation.latitude,
       },
     });
     if (response.status >= 400)

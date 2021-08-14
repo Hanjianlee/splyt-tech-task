@@ -6,7 +6,7 @@ export interface UserInterface {
   latitude: number | null;
   driverCount: string;
   geoPermission: string | null;
-  nearestHQLocation: {
+  HQLocation: {
     longitude: number | null;
     latitude: number | null;
   };
@@ -21,7 +21,7 @@ const initialState: UserInterface = {
   latitude: null,
   driverCount: "5",
   geoPermission: null,
-  nearestHQLocation: {
+  HQLocation: {
     longitude: null,
     latitude: null,
   },
@@ -31,8 +31,7 @@ export default function UserReducer(state = initialState, action: Action) {
     case USERS.UPDATE_USER_LOCATION:
       return {
         status: "updated",
-        driverCount: state.driverCount,
-        nearestHQLocation: state.nearestHQLocation,
+        ...state,
         ...action.payload,
       };
     case USERS.UPDATE_USER_DRIVER_COUNT:
@@ -41,10 +40,16 @@ export default function UserReducer(state = initialState, action: Action) {
         status: "updated",
         ...action.payload,
       };
+    case USERS.UPDATE_USER_HQ_LOCATION:
+      return {
+        status: "updated",
+        ...state,
+        ...action.payload,
+      };
     case USERS.GET_NEAREST_HQ_LOCATION.REQUESTED:
       return {
         ...state,
-        nearestHQLocation: {
+        HQLocation: {
           longitude: 103.8522982,
           latitude: 1.285194,
         },
@@ -57,7 +62,7 @@ export default function UserReducer(state = initialState, action: Action) {
     case USERS.GET_NEAREST_HQ_LOCATION.FAILED:
       return {
         ...state,
-        nearestHQLocation: {
+        HQLocation: {
           longitude: 103.8522982,
           latitude: 1.285194,
         },
