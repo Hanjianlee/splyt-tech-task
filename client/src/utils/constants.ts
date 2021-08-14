@@ -8,10 +8,12 @@ export const {
   REACT_APP_MAP_GL_TOKEN,
 } = process.env;
 export const API_PREFIX: string = "api";
-export type HQLOCATIONTYPE = {
-  country: string;
+export type LocationType = {
   longitude: number;
   latitude: number;
+};
+export type HQLOCATIONTYPE = LocationType & {
+  country: string;
 };
 export const HQLOCATIONS: HQLOCATIONTYPE[] = [
   {

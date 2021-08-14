@@ -3,12 +3,14 @@ import "./App.css";
 import { connect } from "react-redux";
 /** Components **/
 import Map from "./components/Map";
+import HQSelector from "./components/HQSelector";
 import DriverCountSlider from "./components/DriverCountSlider";
 /** Actions **/
 import {
   updateUserLocation,
   getNearestHQLocation,
   updateUserDriverCount,
+  updateUserHQLocation,
 } from "./actions/users";
 import {
   getNearestDrivers,
@@ -22,10 +24,11 @@ import { HQLOCATIONS } from "./utils/constants";
 interface PropsInterface {
   user?: UserInterface;
   drivers?: DriverInterface;
-  getNearestDrivers?: (payload: GetNearestDriversInterface) => void;
+  getNearestDrivers?: () => void;
   updateUserLocation?: (payload: UserInterface) => void;
   updateUserDriverCount?: (payload: UserInterface) => void;
   getNearestHQLocation?: (payload: UserInterface) => void;
+  updateUserHQLocation?: (payload: UserInterface) => void;
 }
 
 const MINIMUM_DRIVERS = 1;
@@ -35,12 +38,8 @@ const App = (props: PropsInterface) => {
   useEffect(() => {
     clearInterval();
     const id = setInterval(() => {
-      const { longitude, latitude } = props.user
-        ? props.user.nearestHQLocation
-        : HQLOCATIONS[0];
-      if (props.getNearestDrivers && longitude && latitude) {
-        console.log("Poll");
-        props.getNearestDrivers({ longitude, latitude });
+      if (props.getNearestDrivers) {
+        props.getNearestDrivers();
       }
     }, 5000);
     return () => clearInterval(id);
@@ -77,6 +76,19 @@ const App = (props: PropsInterface) => {
   });
   return (
     <div className="App">
+      <HQSelector
+        locations={HQLOCATIONS}
+        returnToNearest={() =>
+          props.getNearestHQLocation && props.user
+            ? props.getNearestHQLocation({ ...props.user })
+            : null
+        }
+        onClick={(location) =>
+          props.updateUserHQLocation
+            ? props.updateUserHQLocation(location)
+            : null
+        }
+      />
       <DriverCountSlider
         maxValue={MAXIMUM_DRIVERS}
         minValue={MINIMUM_DRIVERS}
@@ -102,6 +114,7 @@ const mapDispatchToProps = {
   updateUserDriverCount,
   getNearestHQLocation,
   getNearestDrivers,
+  updateUserHQLocation,
 };
 const mapStateToProps = (state: RootState, ownProps: PropsInterface) => ({
   user: state.user,
