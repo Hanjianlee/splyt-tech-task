@@ -12,13 +12,15 @@ import {
 import {
   REACT_APP_MAP_GL_STYLE,
   REACT_APP_MAP_GL_TOKEN,
+  HQLOCATIONS,
 } from "../utils/constants";
-
+import "mapbox-gl/dist/mapbox-gl.css";
 /** Temporary work around to let build version function as Babel has some issues loading the modules **/
 import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
 // @ts-ignore
 // eslint-disable-next-line
 import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker";
+import { rootCertificates } from "tls";
 
 interface PropsInterface {
   user?: UserInterface;
@@ -41,7 +43,7 @@ export const Map = (props: PropsInterface) => {
     height: "100vh",
     latitude: 51.5049375,
     longitude: -0.0964509,
-    zoom: 14,
+    zoom: 16,
   });
   /** Update Location if User's location is updated**/
   useEffect(() => {
@@ -67,7 +69,24 @@ export const Map = (props: PropsInterface) => {
       {...viewport}
       mapboxApiAccessToken={REACT_APP_MAP_GL_TOKEN}
       onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
+      maxZoom={16}
+      minZoom={10}
     >
+      {HQLOCATIONS.map((location) => (
+        <Marker
+          key={location.country}
+          longitude={location.longitude}
+          latitude={location.latitude}
+        >
+          <img
+            src="/splytMarker.svg"
+            style={{
+              width: "45px",
+              height: "45px",
+            }}
+          />
+        </Marker>
+      ))}
       {props.drivers?.drivers.map((driver: DriverDetailsInterface) => (
         <Marker
           key={driver.driver_id}
@@ -76,7 +95,10 @@ export const Map = (props: PropsInterface) => {
         >
           <img
             src="/image2vector.svg"
-            style={{ width: "30px", height: "30px" }}
+            style={{
+              width: "30px",
+              height: "30px",
+            }}
           />
         </Marker>
       ))}
