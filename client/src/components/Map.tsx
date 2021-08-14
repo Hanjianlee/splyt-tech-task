@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 /** Components **/
 import ReactMapGL, { Marker } from "react-map-gl";
 /** Interfaces **/
@@ -36,7 +36,6 @@ interface ViewportPropsInterface {
 
 export const Map = (props: PropsInterface) => {
   /** Default will be UK HQ **/
-  console.log(props.drivers);
   const [viewport, setViewport] = useState<ViewportPropsInterface>({
     width: "100vw",
     height: "100vh",
@@ -46,6 +45,7 @@ export const Map = (props: PropsInterface) => {
   });
   /** Update Location if User's location is updated**/
   useEffect(() => {
+    console.log("New Location");
     const latitude: number = props.user?.nearestHQLocation.latitude
       ? props.user?.nearestHQLocation.latitude
       : viewport.latitude;
@@ -54,49 +54,37 @@ export const Map = (props: PropsInterface) => {
       : viewport.longitude;
     if (viewport.latitude !== latitude || viewport.longitude !== longitude)
       setViewport({ ...viewport, longitude, latitude } as any);
-  }, [props.user?.nearestHQLocation, viewport]);
-
-  /** Poll for drivers **/
-  useEffect(() => {
-    const id = setInterval(() => {
-      const { longitude, latitude } = viewport;
-      if (props.getNearestDrivers)
-        props.getNearestDrivers({ longitude, latitude });
-    }, 1000);
-    console.log("Start Polling");
-    return () => clearInterval(id);
-  }, [props.user?.driverCount]);
+  }, [props.user?.nearestHQLocation]);
   /** On Window Resize **/
   useEffect(() => {
+    console.log("Resize");
     window.addEventListener("resize", (event: Event) => {
+      console.log("New Resize");
       const w = event.target as Window;
       setViewport({ ...viewport, width: w.innerWidth, height: w.innerHeight });
     });
-  }, [viewport]);
-  const drivers = props?.drivers?.status ? props.drivers : { drivers: [] };
+  }, []);
   return (
-    <div className="App">
-      <ReactMapGL
-        mapStyle={REACT_APP_MAP_GL_STYLE}
-        {...viewport}
-        mapboxApiAccessToken={REACT_APP_MAP_GL_TOKEN}
-        onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
-      >
-        {drivers.drivers.map((driver: DriverDetailsInterface) => (
-          <Marker
-            key={driver.driver_id}
-            longitude={driver.location.longitude}
-            latitude={driver.location.latitude}
-          >
-            <img
-              src="/image2vector.svg"
-              style={{ width: "30px", height: "30px" }}
-            />
-          </Marker>
-        ))}
-      </ReactMapGL>
-    </div>
+    <ReactMapGL
+      mapStyle={REACT_APP_MAP_GL_STYLE}
+      {...viewport}
+      mapboxApiAccessToken={REACT_APP_MAP_GL_TOKEN}
+      onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
+    >
+      {props.drivers?.drivers.map((driver: DriverDetailsInterface) => (
+        <Marker
+          key={driver.driver_id}
+          longitude={driver.location.longitude}
+          latitude={driver.location.latitude}
+        >
+          <img
+            src="/image2vector.svg"
+            style={{ width: "30px", height: "30px" }}
+          />
+        </Marker>
+      ))}
+    </ReactMapGL>
   );
 };
 
-export default Map;
+export default React.memo(Map);
