@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 /** Components **/
@@ -17,7 +18,7 @@ import {
 import { UserInterface } from "./reducers/usersReducer";
 import { DriverInterface } from "./reducers/driversReducer";
 import { RootState } from "./reducers";
-
+import { HQLOCATIONS } from "./utils/constants";
 interface PropsInterface {
   user?: UserInterface;
   drivers?: DriverInterface;
@@ -27,7 +28,21 @@ interface PropsInterface {
   getNearestHQLocation?: (payload: UserInterface) => void;
 }
 
+const MINIMUM_DRIVERS = 1;
+const MAXIMUM_DRIVERS = 10;
 const App = (props: PropsInterface) => {
+  /** Poll for drivers **/
+  useEffect(() => {
+    clearInterval();
+    const id = setInterval(() => {
+      const { longitude, latitude } = props.user
+        ? props.user.nearestHQLocation
+        : HQLOCATIONS[0];
+      if (props.getNearestDrivers && longitude && latitude)
+        props.getNearestDrivers({ longitude, latitude });
+    }, 10000);
+    return () => clearInterval(id);
+  }, [props.user?.driverCount]);
   /** Get Location 
    Need to Check if user allows location access **/
   navigator.permissions.query({ name: "geolocation" }).then((permission) => {
@@ -61,8 +76,8 @@ const App = (props: PropsInterface) => {
   return (
     <div className="App">
       <DriverCountSlider
-        maxValue={10}
-        minValue={1}
+        maxValue={MAXIMUM_DRIVERS}
+        minValue={MINIMUM_DRIVERS}
         count={props.user?.driverCount}
         onChange={(event) =>
           props.updateUserDriverCount
