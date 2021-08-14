@@ -1,5 +1,5 @@
 import { USERS } from "../actionTypes/usersTypes";
-import { all, takeLatest, put, call } from "@redux-saga/core/effects";
+import { all, takeLatest, put } from "@redux-saga/core/effects";
 import { ActionInterface } from "../reducers/driversReducer";
 import { getDistanceHF } from "../utils/getDistance";
 import { HQLOCATIONS, HQLOCATIONTYPE } from "../utils/constants";
