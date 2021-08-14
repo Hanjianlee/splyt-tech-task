@@ -40,9 +40,9 @@ function* getNearestHQLocation(action: ActionInterface) {
       }
     });
     yield put({
-        type: USERS.GET_NEAREST_HQ_LOCATION.SUCCESS,
-        payload: {nearestHQLocation:nearestHQ},
-      });
+      type: USERS.GET_NEAREST_HQ_LOCATION.SUCCESS,
+      payload: { nearestHQLocation: nearestHQ },
+    });
   } catch (error) {
     yield put({
       type: USERS.GET_NEAREST_HQ_LOCATION.FAILED,
