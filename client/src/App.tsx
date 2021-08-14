@@ -42,7 +42,7 @@ const App = (props: PropsInterface) => {
         console.log("Poll");
         props.getNearestDrivers({ longitude, latitude });
       }
-    }, 10000);
+    }, 5000);
     return () => clearInterval(id);
   });
   /** Get Location 
