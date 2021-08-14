@@ -38,11 +38,13 @@ const App = (props: PropsInterface) => {
       const { longitude, latitude } = props.user
         ? props.user.nearestHQLocation
         : HQLOCATIONS[0];
-      if (props.getNearestDrivers && longitude && latitude)
+      if (props.getNearestDrivers && longitude && latitude) {
+        console.log("Poll");
         props.getNearestDrivers({ longitude, latitude });
+      }
     }, 10000);
     return () => clearInterval(id);
-  }, [props.user?.driverCount]);
+  });
   /** Get Location 
    Need to Check if user allows location access **/
   navigator.permissions.query({ name: "geolocation" }).then((permission) => {

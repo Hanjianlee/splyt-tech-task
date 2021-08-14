@@ -45,7 +45,6 @@ export const Map = (props: PropsInterface) => {
   });
   /** Update Location if User's location is updated**/
   useEffect(() => {
-    console.log("New Location");
     const latitude: number = props.user?.nearestHQLocation.latitude
       ? props.user?.nearestHQLocation.latitude
       : viewport.latitude;
@@ -57,13 +56,11 @@ export const Map = (props: PropsInterface) => {
   }, [props.user?.nearestHQLocation]);
   /** On Window Resize **/
   useEffect(() => {
-    console.log("Resize");
     window.addEventListener("resize", (event: Event) => {
-      console.log("New Resize");
       const w = event.target as Window;
       setViewport({ ...viewport, width: w.innerWidth, height: w.innerHeight });
     });
-  }, []);
+  });
   return (
     <ReactMapGL
       mapStyle={REACT_APP_MAP_GL_STYLE}
