@@ -1,13 +1,10 @@
-import {DRIVERS} from '../actionTypes/driversTypes'
+import { DRIVERS } from "../actionTypes/driversTypes";
 
-export interface GetNearestDriversInterface {
-    longitude:number,
-    latitude:number,
-}
+export interface GetNearestDriversInterface {}
 
-export function getNearestDrivers(payload:GetNearestDriversInterface) {
-    return {
-        type: DRIVERS.GET_NEAREST_DRIVERS.REQUESTED,
-        payload,
-    }
+export function getNearestDrivers() {
+  return {
+    type: DRIVERS.GET_NEAREST_DRIVERS.REQUESTED,
+    payload: {},
+  };
 }

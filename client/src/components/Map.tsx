@@ -47,15 +47,15 @@ export const Map = (props: PropsInterface) => {
   });
   /** Update Location if User's location is updated**/
   useEffect(() => {
-    const latitude: number = props.user?.nearestHQLocation.latitude
-      ? props.user?.nearestHQLocation.latitude
+    const latitude: number = props.user?.HQLocation.latitude
+      ? props.user?.HQLocation.latitude
       : viewport.latitude;
-    const longitude: number = props.user?.nearestHQLocation.longitude
-      ? props.user?.nearestHQLocation.longitude
+    const longitude: number = props.user?.HQLocation.longitude
+      ? props.user?.HQLocation.longitude
       : viewport.longitude;
     if (viewport.latitude !== latitude || viewport.longitude !== longitude)
       setViewport({ ...viewport, longitude, latitude } as any);
-  }, [props.user?.nearestHQLocation]);
+  }, [props.user?.HQLocation]);
   /** On Window Resize **/
   useEffect(() => {
     window.addEventListener("resize", (event: Event) => {
@@ -69,7 +69,7 @@ export const Map = (props: PropsInterface) => {
       {...viewport}
       mapboxApiAccessToken={REACT_APP_MAP_GL_TOKEN}
       onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
-      maxZoom={16}
+      maxZoom={18}
       minZoom={10}
     >
       {HQLOCATIONS.map((location) => (
@@ -81,8 +81,8 @@ export const Map = (props: PropsInterface) => {
           <img
             src="/splytMarker.svg"
             style={{
-              width: "45px",
-              height: "45px",
+              width: "30px",
+              height: "30px",
             }}
           />
         </Marker>
@@ -98,6 +98,7 @@ export const Map = (props: PropsInterface) => {
             style={{
               width: "30px",
               height: "30px",
+              transform: `rotate(${driver.location.bearing - 90}deg)`,
             }}
           />
         </Marker>
