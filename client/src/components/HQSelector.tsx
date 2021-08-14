@@ -28,6 +28,11 @@ export const HQSelector = (props: PropsInterface) => {
           {location.country}
         </div>
       ))}
+      <div
+        onClick={() => (props.returnToNearest ? props.returnToNearest() : null)}
+      >
+        Nearest
+      </div>
     </div>
   );
 };
