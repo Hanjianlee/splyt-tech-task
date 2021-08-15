@@ -28,3 +28,5 @@ app.use("/", router);
 app.listen(port, () => {
   console.log(`Backend Server running on http://localhost:${port} !`);
 });
+
+export default app;
