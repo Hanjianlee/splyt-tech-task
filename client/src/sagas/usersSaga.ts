@@ -1,8 +1,8 @@
 import { USERS } from "../actionTypes/usersTypes";
 import { all, takeLatest, put } from "@redux-saga/core/effects";
-import { ActionInterface } from "../reducers/driversReducer";
+import { ActionInterface } from "../reducers/driverReducer";
 import { getDistanceHF } from "../utils/getDistance";
-import { HQLOCATIONS, HQLOCATIONTYPE } from "../utils/constants";
+import { HQLOCATIONS, HQLocationType } from "../utils/constants";
 function* getNearestHQLocation(action: ActionInterface) {
   try {
     const { longitude, latitude } = action.payload;
@@ -18,7 +18,7 @@ function* getNearestHQLocation(action: ActionInterface) {
       });
     var nearestDistance: number = 0;
     var distance: number = 0;
-    var nearestHQ: HQLOCATIONTYPE = {
+    var nearestHQ: HQLocationType = {
       country: "",
       longitude: 0,
       latitude: 0,

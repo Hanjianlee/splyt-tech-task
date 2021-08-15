@@ -1,7 +1,7 @@
 import { all, takeLatest, put, call, select } from "@redux-saga/core/effects";
 import { get } from "../utils/server";
 import { DRIVERS } from "../actionTypes/driversTypes";
-import { ActionInterface } from "../reducers/driversReducer";
+import { ActionInterface } from "../reducers/driverReducer";
 import { AxiosResponse } from "axios";
 import { userSelector, UserInterface } from "../reducers/usersReducer";
 
