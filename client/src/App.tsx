@@ -22,7 +22,10 @@ import {
   MINIMUM_DRIVERS,
   MAXIMUM_DRIVERS,
 } from "./utils/constants";
-import { getGeolocationPermission } from "./utils/permissions";
+import {
+  getGeolocationPermission,
+  GeoLocationInterface,
+} from "./utils/permissions";
 interface PropsInterface {
   user?: UserInterface;
   driver?: DriverInterface;
@@ -47,30 +50,36 @@ const App = (props: PropsInterface) => {
   }, [props.getNearestDrivers]);
   /** Get Location 
    Need to Check if user allows location access **/
-  useEffect(() => {
-    console.log("Request");
+  const getLocation = async (): Promise<GeoLocationInterface> => {
     const { longitude, latitude, geoPermission } =
-      getGeolocationPermission(navigator);
-    if (
-      props.user?.latitude !== latitude ||
-      props.user?.longitude !== longitude
-    ) {
-      if (props.updateUserLocation)
-        props.updateUserLocation({
-          longitude,
-          latitude,
-          geoPermission,
-        } as UserInterface);
-      if (props.getNearestHQLocation)
-        props.getNearestHQLocation({
-          longitude,
-          latitude,
-        } as UserInterface);
-    }
-    return;
+      await getGeolocationPermission(navigator);
+    console.log({ longitude, latitude, geoPermission });
+    return { longitude, latitude, geoPermission };
+  };
+  useEffect(() => {
+    getLocation().then((geoLocation) => {
+      const { longitude, latitude, geoPermission } = geoLocation;
+      console.log("Request");
+      if (
+        props.user?.latitude !== latitude ||
+        props.user?.longitude !== longitude
+      ) {
+        if (props.updateUserLocation)
+          props.updateUserLocation({
+            longitude,
+            latitude,
+            geoPermission,
+          } as UserInterface);
+        if (props.getNearestHQLocation)
+          props.getNearestHQLocation({
+            longitude,
+            latitude,
+          } as UserInterface);
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigator.permissions]);
-
+  console.log(props.user);
   return (
     <div className="App">
       <div className="action-container">

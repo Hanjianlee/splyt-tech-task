@@ -33,7 +33,7 @@ export const HQSelector = (props: PropsInterface) => {
   const handleClick = (location: HQLocationType) => {
     setSelected(location);
     /** Head to Nearest Stored HQ**/
-    if (location.country === "Nearest HQ") {
+    if (location.country === "Nearest-HQ") {
       return props.returnToNearest ? props.returnToNearest() : null;
     } else {
       return props.onClick({ HQLocation: location });

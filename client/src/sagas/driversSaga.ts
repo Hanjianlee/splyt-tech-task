@@ -22,7 +22,6 @@ function* getDrivers(action: ActionInterface) {
     });
     if (response.status >= 400)
       return put({ type: DRIVERS.GET_NEAREST_DRIVERS.FAILED, payload: {} });
-    console.log("success");
     yield put({
       type: DRIVERS.GET_NEAREST_DRIVERS.SUCCESS,
       payload: { ...response.data, count: response.data.drivers.length },
