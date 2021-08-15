@@ -8,24 +8,29 @@ import { UserInterface } from "../../reducers/usersReducer";
 import {
   DriverInterface,
   DriverDetailsInterface,
-} from "../../reducers/driversReducer";
+} from "../../reducers/driverReducer";
 /** Constants **/
 import {
   REACT_APP_MAP_GL_STYLE,
   REACT_APP_MAP_GL_TOKEN,
   HQLOCATIONS,
+  MINIMUM_ZOOM,
+  MAXIMUM_ZOOM,
+  DEFAULT_ZOOM,
 } from "../../utils/constants";
 import "mapbox-gl/dist/mapbox-gl.css";
 /** Temporary work around to let build version function as Babel has some issues loading the modules **/
+// eslint-disable-next-line
 import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
 // @ts-ignore
 // eslint-disable-next-line
 import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker";
+// eslint-disable-next-line
 import { rootCertificates } from "tls";
 
 interface PropsInterface {
   user?: UserInterface;
-  drivers?: DriverInterface;
+  driver?: DriverInterface;
   getNearestDrivers?: (payload: GetNearestDriversInterface) => void;
 }
 
@@ -44,8 +49,9 @@ export const Map = (props: PropsInterface) => {
     height: "100vh",
     latitude: 51.5049375,
     longitude: -0.0964509,
-    zoom: 16,
+    zoom: DEFAULT_ZOOM,
   });
+
   /** Update Location if User's location is updated**/
   useEffect(() => {
     const latitude: number = props.user?.HQLocation.latitude
@@ -56,22 +62,27 @@ export const Map = (props: PropsInterface) => {
       : viewport.longitude;
     if (viewport.latitude !== latitude || viewport.longitude !== longitude)
       setViewport({ ...viewport, longitude, latitude } as any);
-  }, [props.user?.HQLocation]);
+  }, [viewport, props.user?.HQLocation]);
+
   /** On Window Resize **/
   useEffect(() => {
-    window.addEventListener("resize", (event: Event) => {
+    function handleResize(event: Event) {
+      console.log("Resize", viewport.longitude);
       const w = event.target as Window;
       setViewport({ ...viewport, width: w.innerWidth, height: w.innerHeight });
-    });
-  });
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [viewport]);
+
   return (
     <ReactMapGL
       mapStyle={REACT_APP_MAP_GL_STYLE}
       {...viewport}
       mapboxApiAccessToken={REACT_APP_MAP_GL_TOKEN}
       onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
-      maxZoom={18}
-      minZoom={10}
+      maxZoom={MAXIMUM_ZOOM}
+      minZoom={MINIMUM_ZOOM}
     >
       {HQLOCATIONS.map((location) => (
         <Marker
@@ -79,10 +90,14 @@ export const Map = (props: PropsInterface) => {
           longitude={location.longitude}
           latitude={location.latitude}
         >
-          <img className="splyt-marker-svg" src="/splytMarker.svg" />
+          <img
+            className="splyt-marker-svg"
+            src="/splytMarker.svg"
+            alt="Splyt"
+          />
         </Marker>
       ))}
-      {props.drivers?.drivers.map((driver: DriverDetailsInterface) => (
+      {props.driver?.drivers.map((driver: DriverDetailsInterface) => (
         <Marker
           key={driver.driver_id}
           longitude={driver.location.longitude}
@@ -91,6 +106,7 @@ export const Map = (props: PropsInterface) => {
           <img
             className="taxi-marker-svg"
             src="/image2vector.svg"
+            alt="Taxi"
             style={{
               transform: `rotate(${driver.location.bearing - 90}deg)`,
             }}
