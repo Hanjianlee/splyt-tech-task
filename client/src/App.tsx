@@ -18,6 +18,7 @@ import { UserInterface } from "./reducers/usersReducer";
 import { DriverInterface } from "./reducers/driversReducer";
 import { RootState } from "./reducers";
 import { HQLOCATIONS } from "./utils/constants";
+import { getGeolocationPermission } from "./utils/permissions";
 interface PropsInterface {
   user?: UserInterface;
   drivers?: DriverInterface;
@@ -43,34 +44,29 @@ const App = (props: PropsInterface) => {
   });
   /** Get Location 
    Need to Check if user allows location access **/
-  navigator.permissions.query({ name: "geolocation" }).then((permission) => {
-    if (permission.state === "granted") {
-      navigator.geolocation.getCurrentPosition((postition) => {
-        const { longitude, latitude } = postition.coords;
-        if (
-          props.user?.latitude !== latitude ||
-          props.user?.longitude !== longitude
-        ) {
-          if (props.updateUserLocation)
-            props.updateUserLocation({
-              longitude,
-              latitude,
-              geoPermission: permission.state,
-            } as UserInterface);
-          if (props.getNearestHQLocation)
-            props.getNearestHQLocation({
-              longitude,
-              latitude,
-            } as UserInterface);
-        }
-        return;
-      });
-    } else {
-      alert(
-        "Hey There !\nPlease Allow Location to work :) \nGo To Settings on the Top Right corner \nPrivacy and Security\nSite Settings > localhost:3000 \nLocation > Allow\n"
-      );
+  useEffect(() => {
+    console.log("Request");
+    const { longitude, latitude, geoPermission } =
+      getGeolocationPermission(navigator);
+    if (
+      props.user?.latitude !== latitude ||
+      props.user?.longitude !== longitude
+    ) {
+      if (props.updateUserLocation)
+        props.updateUserLocation({
+          longitude,
+          latitude,
+          geoPermission,
+        } as UserInterface);
+      if (props.getNearestHQLocation)
+        props.getNearestHQLocation({
+          longitude,
+          latitude,
+        } as UserInterface);
     }
-  });
+    return;
+  }, [navigator.permissions]);
+
   return (
     <div className="App">
       <HQSelector
