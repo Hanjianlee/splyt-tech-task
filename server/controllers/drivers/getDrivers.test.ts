@@ -17,7 +17,7 @@ describe("Get Drivers From Splyt", () => {
   it("GET /api/drivers/getDrivers Bad Request", () => {
     return request(app)
       .get("/api/drivers/getDrivers")
-      .query()
+      .query({})
       .expect("Content-Type", /json/)
       .expect(400);
   });
