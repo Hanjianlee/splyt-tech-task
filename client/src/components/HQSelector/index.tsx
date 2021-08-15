@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HQLocationType } from "../../utils/constants";
+import { HQLocationType, NEAREST_HQ_STRING } from "../../utils/constants";
 import _ from "lodash";
 import "./styles.scss";
 export interface PropsInterface {
@@ -10,18 +10,19 @@ export interface PropsInterface {
 export const HQSelector = (props: PropsInterface) => {
   const [selections, setSelections] = useState<HQLocationType[]>([
     {
-      country: "Nearest-HQ",
+      country: NEAREST_HQ_STRING,
       latitude: 0,
       longitude: 0,
     },
   ]);
 
+  /** Update HQ Locations **/
   const [selected, setSelected] = useState<HQLocationType>({
-    country: "Nearest-HQ",
+    country: NEAREST_HQ_STRING,
     latitude: 0,
     longitude: 0,
   });
-  /** Update HQ Locations **/
+
   useEffect(() => {
     const locations = props.locations ? props.locations : [];
     const updateSelections = _.uniqBy([...locations, ...selections], "country");
@@ -32,8 +33,8 @@ export const HQSelector = (props: PropsInterface) => {
   /** Handle Selected HQ**/
   const handleClick = (location: HQLocationType) => {
     setSelected(location);
-    /** Head to Nearest Stored HQ**/
-    if (location.country === "Nearest-HQ") {
+    if (location.country === NEAREST_HQ_STRING) {
+      /** Head to Nearest Stored HQ**/
       return props.returnToNearest ? props.returnToNearest() : null;
     } else {
       return props.onClick({ HQLocation: location });

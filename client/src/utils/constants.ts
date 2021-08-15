@@ -6,6 +6,7 @@ export const MAXIMUM_DRIVERS: number = 10;
 export const MINIMUM_ZOOM: number = 10;
 export const MAXIMUM_ZOOM: number = 20;
 export const DEFAULT_ZOOM: number = 14;
+export const NEAREST_HQ_STRING: string = "Nearest-HQ";
 export const {
   REACT_APP_API_URL,
   REACT_APP_API_KEY,
