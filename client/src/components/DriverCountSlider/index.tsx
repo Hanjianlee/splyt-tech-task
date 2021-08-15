@@ -5,10 +5,10 @@ export interface PropsInterface {
   minValue: number;
   count: string | undefined;
   value?: number | null;
-  onChange: (event: any) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Slider = (props: PropsInterface) => {
+export const DriverCountSlider = (props: PropsInterface) => {
   const [count, setCount] = useState<string>(props.count ? props.count : "0");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChange(event);
@@ -16,12 +16,12 @@ export const Slider = (props: PropsInterface) => {
   };
   return (
     <div className="driver-count-slider-container">
-      <p>Taxi Count</p>
+      <p aria-label="driver-count-title">Taxi Count</p>
       <input
         aria-label="driver-count-slider"
         type="range"
-        min={0}
-        max={10}
+        min={props.minValue}
+        max={props.maxValue}
         value={count}
         onChange={(event) => handleChange(event)}
       />
@@ -29,4 +29,4 @@ export const Slider = (props: PropsInterface) => {
     </div>
   );
 };
-export default Slider;
+export default DriverCountSlider;

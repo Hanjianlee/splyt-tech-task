@@ -1,12 +1,12 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import DriverCountSlider from ".";
-
+import { MINIMUM_DRIVERS, MAXIMUM_DRIVERS } from "../../utils/constants";
 test("Render Driver Count Slider ", () => {
   const defaultValue = "5";
   const utils = render(
     <DriverCountSlider
-      minValue={10}
-      maxValue={0}
+      minValue={MINIMUM_DRIVERS}
+      maxValue={MAXIMUM_DRIVERS}
       count={defaultValue}
       onChange={(event) => event.target?.value}
     />
@@ -24,8 +24,8 @@ test("Test Count Slider Default Value", () => {
   const defaultValue = "5";
   const utils = render(
     <DriverCountSlider
-      minValue={10}
-      maxValue={0}
+      minValue={MINIMUM_DRIVERS}
+      maxValue={MAXIMUM_DRIVERS}
       count={defaultValue}
       onChange={(event) => event.target?.value}
     />
@@ -43,8 +43,8 @@ test("Test Count Slider Update Value", () => {
   const defaultValue = "5";
   const utils = render(
     <DriverCountSlider
-      minValue={10}
-      maxValue={0}
+      minValue={MINIMUM_DRIVERS}
+      maxValue={MAXIMUM_DRIVERS}
       count={defaultValue}
       onChange={(event) => event.target?.value}
     />
