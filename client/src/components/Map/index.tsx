@@ -62,7 +62,8 @@ export const Map = (props: PropsInterface) => {
       : viewport.longitude;
     if (viewport.latitude !== latitude || viewport.longitude !== longitude)
       setViewport({ ...viewport, longitude, latitude } as any);
-  }, [viewport, props.user?.HQLocation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.user?.HQLocation]);
 
   /** On Window Resize **/
   useEffect(() => {
