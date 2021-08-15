@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HQLOCATIONTYPE, LocationType } from "../../utils/constants";
+import { HQLOCATIONTYPE } from "../../utils/constants";
 import _ from "lodash";
 import "./styles.scss";
 export interface PropsInterface {
@@ -49,6 +49,7 @@ export const HQSelector = (props: PropsInterface) => {
       <div className="hq-selector-selections">
         {selections.map((location) => (
           <div
+            key={location.country}
             className={
               selected.country === location.country
                 ? "selected hq-selector-selection"

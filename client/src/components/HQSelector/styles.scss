@@ -12,7 +12,7 @@ $selectBackgroundColor: rgb(107, 250, 236);
   background-color: rgba($backgroundColor, 0.7);
   border-radius: 5px;
   cursor: pointer;
-  width: 120px;
+  width: 150px;
 }
 
 .hq-selector-header {
@@ -34,7 +34,7 @@ $selectBackgroundColor: rgb(107, 250, 236);
 }
 .hq-selector:hover {
   .hq-selector-selections {
-    display: block;
+    display: inline-block;
   }
   .hq-selector-header-arrow {
     transform: rotate(90deg);
