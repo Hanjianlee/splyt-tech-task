@@ -73,31 +73,33 @@ const App = (props: PropsInterface) => {
 
   return (
     <div className="App">
-      <HQSelector
-        locations={HQLOCATIONS}
-        returnToNearest={() =>
-          props.getNearestHQLocation && props.user
-            ? props.getNearestHQLocation({ ...props.user })
-            : null
-        }
-        onClick={(location) =>
-          props.updateUserHQLocation
-            ? props.updateUserHQLocation(location)
-            : null
-        }
-      />
-      <DriverCountSlider
-        maxValue={MAXIMUM_DRIVERS}
-        minValue={MINIMUM_DRIVERS}
-        count={props.user?.driverCount}
-        onChange={(event) =>
-          props.updateUserDriverCount
-            ? props.updateUserDriverCount({
-                driverCount: event.target.value,
-              } as UserInterface)
-            : null
-        }
-      />
+      <div className="action-container">
+        <HQSelector
+          locations={HQLOCATIONS}
+          returnToNearest={() =>
+            props.getNearestHQLocation && props.user
+              ? props.getNearestHQLocation({ ...props.user })
+              : null
+          }
+          onClick={(location) =>
+            props.updateUserHQLocation
+              ? props.updateUserHQLocation(location)
+              : null
+          }
+        />
+        <DriverCountSlider
+          maxValue={MAXIMUM_DRIVERS}
+          minValue={MINIMUM_DRIVERS}
+          count={props.user?.driverCount}
+          onChange={(event) =>
+            props.updateUserDriverCount
+              ? props.updateUserDriverCount({
+                  driverCount: event.target.value,
+                } as UserInterface)
+              : null
+          }
+        />
+      </div>
       <Map
         user={props.user}
         driver={props.driver}
@@ -115,7 +117,7 @@ const mapDispatchToProps = {
 };
 const mapStateToProps = (state: RootState, ownProps: PropsInterface) => ({
   user: state.user,
-  drivers: state.driver,
+  driver: state.driver,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

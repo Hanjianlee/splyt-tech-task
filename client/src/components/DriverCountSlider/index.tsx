@@ -16,8 +16,11 @@ export const DriverCountSlider = (props: PropsInterface) => {
   };
   return (
     <div className="driver-count-slider-container">
-      <p aria-label="driver-count-title">Taxi Count</p>
+      <p className="driver-count-slider-header" aria-label="driver-count-title">
+        Taxi Count
+      </p>
       <input
+        className="driver-count-slider-input"
         aria-label="driver-count-slider"
         type="range"
         min={props.minValue}
@@ -25,7 +28,9 @@ export const DriverCountSlider = (props: PropsInterface) => {
         value={count}
         onChange={(event) => handleChange(event)}
       />
-      <p aria-label="driver-count-text">{count}</p>
+      <p className="driver-count-slider-count" aria-label="driver-count-text">
+        {count}
+      </p>
     </div>
   );
 };

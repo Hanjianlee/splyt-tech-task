@@ -5,3 +5,8 @@ $fontSize: 16px;
   text-align: center;
   font-size: $fontSize;
 }
+.action-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+}

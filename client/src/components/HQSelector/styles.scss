@@ -1,18 +1,18 @@
-$backgroundColor: rgb(186, 240, 235);
+$backgroundColor: rgb(255, 255, 255);
 $selectBackgroundColor: rgb(107, 250, 236);
 .hq-selector {
   display: flex;
   flex-direction: column;
-  position: absolute;
   z-index: 1;
   margin: 15px 20px;
-  padding: 10px;
+  padding: 5px;
   left: 0;
   text-align: left;
-  background-color: rgba($backgroundColor, 0.7);
+  background-color: rgba($backgroundColor, 0.9);
   border-radius: 5px;
   cursor: pointer;
   width: 150px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hq-selector-header {
@@ -21,7 +21,7 @@ $selectBackgroundColor: rgb(107, 250, 236);
   padding-left: 10px;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
+  height: 30px;
 }
 
 .hq-selector-header-text .hq-selector-header-arrow {

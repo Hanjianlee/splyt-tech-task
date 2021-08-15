@@ -93,7 +93,7 @@ export const Map = (props: PropsInterface) => {
           <img
             className="splyt-marker-svg"
             src="/splytMarker.svg"
-            alt="Splyt"
+            alt="/splytMarker.svg"
           />
         </Marker>
       ))}
@@ -106,7 +106,7 @@ export const Map = (props: PropsInterface) => {
           <img
             className="taxi-marker-svg"
             src="/image2vector.svg"
-            alt="Taxi"
+            alt="/image2vector.svg"
             style={{
               transform: `rotate(${driver.location.bearing - 90}deg)`,
             }}
