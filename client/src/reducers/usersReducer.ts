@@ -15,7 +15,7 @@ interface Action {
   type: string;
   payload: object;
 }
-const initialState: UserInterface = {
+export const initialState: UserInterface = {
   status: null,
   longitude: null,
   latitude: null,

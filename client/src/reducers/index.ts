@@ -1,12 +1,11 @@
 import { combineReducers } from "redux";
-import UserReducer from './usersReducer';
-import DriversReducer from "./driversReducer";
+import UserReducer from "./usersReducer";
+import DriverReducer from "./driverReducer";
 
 const rootReducer = combineReducers({
-    user:UserReducer,
-    drivers:DriversReducer
-})
+  user: UserReducer,
+  driver: DriverReducer,
+});
 
-
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;
