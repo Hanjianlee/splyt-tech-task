@@ -1,0 +1,14 @@
+$backgroundColor: rgb(186, 240, 235);
+
+.driver-count-slider-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  z-index: 1;
+  padding: 5px;
+  left: 40%;
+  justify-content: center;
+  background-color: rgba($backgroundColor, 0.7);
+  border-radius: 5px;
+  margin-top: 15px;
+}

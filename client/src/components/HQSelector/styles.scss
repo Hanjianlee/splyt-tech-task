@@ -1,0 +1,56 @@
+$backgroundColor: rgb(186, 240, 235);
+$selectBackgroundColor: rgb(107, 250, 236);
+.hq-selector {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+  margin: 15px 20px;
+  padding: 10px;
+  left: 0;
+  text-align: left;
+  background-color: rgba($backgroundColor, 0.7);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px;
+}
+
+.hq-selector-header {
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.hq-selector-header-text .hq-selector-header-arrow {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.hq-selector-selections {
+  display: none;
+}
+.hq-selector:hover {
+  .hq-selector-selections {
+    display: block;
+  }
+  .hq-selector-header-arrow {
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+  }
+}
+.hq-selector-selection {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  &:hover {
+    background-color: $selectBackgroundColor;
+    transition: background-color 0.7s ease;
+  }
+}
+
+.selected.hq-selector-selection {
+  background-color: $selectBackgroundColor;
+}

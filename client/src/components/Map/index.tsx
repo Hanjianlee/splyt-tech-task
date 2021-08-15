@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
+import "./styles.scss";
 /** Components **/
 import ReactMapGL, { Marker } from "react-map-gl";
 /** Interfaces **/
-import { GetNearestDriversInterface } from "../actions/drivers";
-import { UserInterface } from "../reducers/usersReducer";
+import { GetNearestDriversInterface } from "../../actions/drivers";
+import { UserInterface } from "../../reducers/usersReducer";
 import {
   DriverInterface,
   DriverDetailsInterface,
-} from "../reducers/driversReducer";
+} from "../../reducers/driversReducer";
 /** Constants **/
 import {
   REACT_APP_MAP_GL_STYLE,
   REACT_APP_MAP_GL_TOKEN,
   HQLOCATIONS,
-} from "../utils/constants";
+} from "../../utils/constants";
 import "mapbox-gl/dist/mapbox-gl.css";
 /** Temporary work around to let build version function as Babel has some issues loading the modules **/
 import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
@@ -78,13 +79,7 @@ export const Map = (props: PropsInterface) => {
           longitude={location.longitude}
           latitude={location.latitude}
         >
-          <img
-            src="/splytMarker.svg"
-            style={{
-              width: "30px",
-              height: "30px",
-            }}
-          />
+          <img className="splyt-marker-svg" src="/splytMarker.svg" />
         </Marker>
       ))}
       {props.drivers?.drivers.map((driver: DriverDetailsInterface) => (
@@ -94,10 +89,9 @@ export const Map = (props: PropsInterface) => {
           latitude={driver.location.latitude}
         >
           <img
+            className="taxi-marker-svg"
             src="/image2vector.svg"
             style={{
-              width: "30px",
-              height: "30px",
               transform: `rotate(${driver.location.bearing - 90}deg)`,
             }}
           />

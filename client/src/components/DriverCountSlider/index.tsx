@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./styles.scss";
 export interface PropsInterface {
   maxValue: number;
   minValue: number;
@@ -14,19 +15,7 @@ export const Slider = (props: PropsInterface) => {
     setCount(event.target.value);
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        position: "absolute",
-        zIndex: 1,
-        padding: "5px",
-        left: "40%",
-        justifyContent: "center",
-        backgroundColor: "rgb(224,224,224,0.7)",
-        borderRadius: "5px",
-      }}
-    >
+    <div className="driver-count-slider-container">
       <p>Taxi Count</p>
       <input
         aria-label="driver-count-slider"

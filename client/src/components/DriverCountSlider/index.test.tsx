@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import DriverCountSlider from "./DriverCountSlider";
+import DriverCountSlider from ".";
 
 test("Render Driver Count Slider ", () => {
   const defaultValue = "5";
