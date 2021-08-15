@@ -15,13 +15,17 @@ import {
 import { getNearestDrivers } from "./actions/drivers";
 /** Interfaces **/
 import { UserInterface } from "./reducers/usersReducer";
-import { DriverInterface } from "./reducers/driversReducer";
+import { DriverInterface } from "./reducers/driverReducer";
 import { RootState } from "./reducers";
-import { HQLOCATIONS } from "./utils/constants";
+import {
+  HQLOCATIONS,
+  MINIMUM_DRIVERS,
+  MAXIMUM_DRIVERS,
+} from "./utils/constants";
 import { getGeolocationPermission } from "./utils/permissions";
 interface PropsInterface {
   user?: UserInterface;
-  drivers?: DriverInterface;
+  driver?: DriverInterface;
   getNearestDrivers?: () => void;
   updateUserLocation?: (payload: UserInterface) => void;
   updateUserDriverCount?: (payload: UserInterface) => void;
@@ -29,8 +33,6 @@ interface PropsInterface {
   updateUserHQLocation?: (payload: UserInterface) => void;
 }
 
-const MINIMUM_DRIVERS = 1;
-const MAXIMUM_DRIVERS = 10;
 const App = (props: PropsInterface) => {
   /** Poll for drivers **/
   useEffect(() => {
@@ -41,7 +43,8 @@ const App = (props: PropsInterface) => {
       }
     }, 5000);
     return () => clearInterval(id);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.getNearestDrivers]);
   /** Get Location 
    Need to Check if user allows location access **/
   useEffect(() => {
@@ -65,6 +68,7 @@ const App = (props: PropsInterface) => {
         } as UserInterface);
     }
     return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigator.permissions]);
 
   return (
@@ -96,7 +100,7 @@ const App = (props: PropsInterface) => {
       />
       <Map
         user={props.user}
-        drivers={props.drivers}
+        driver={props.driver}
         getNearestDrivers={props.getNearestDrivers}
       />
     </div>
@@ -111,7 +115,7 @@ const mapDispatchToProps = {
 };
 const mapStateToProps = (state: RootState, ownProps: PropsInterface) => ({
   user: state.user,
-  drivers: state.drivers,
+  drivers: state.driver,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
