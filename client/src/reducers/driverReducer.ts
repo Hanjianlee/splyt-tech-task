@@ -12,7 +12,7 @@ export interface DriverDetailsInterface {
 export interface DriverInterface {
   status: string | null;
   count: number;
-  drivers: [DriverDetailsInterface] | [];
+  drivers: DriverDetailsInterface[] | [];
   error: string;
   pickup_eta: number | null;
 }
