@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import "./App.css";
 import { connect } from "react-redux";
+import "./App.scss";
 /** Components **/
 import Map from "./components/Map";
 import HQSelector from "./components/HQSelector";
@@ -12,10 +12,7 @@ import {
   updateUserDriverCount,
   updateUserHQLocation,
 } from "./actions/users";
-import {
-  getNearestDrivers,
-  GetNearestDriversInterface,
-} from "./actions/drivers";
+import { getNearestDrivers } from "./actions/drivers";
 /** Interfaces **/
 import { UserInterface } from "./reducers/usersReducer";
 import { DriverInterface } from "./reducers/driversReducer";
