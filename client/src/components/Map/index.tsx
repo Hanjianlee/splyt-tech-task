@@ -80,10 +80,13 @@ export const Map = (props: PropsInterface) => {
     <ReactMapGL
       mapStyle={REACT_APP_MAP_GL_STYLE}
       {...viewport}
+      width="100vw"
+      height="100vh"
       mapboxApiAccessToken={REACT_APP_MAP_GL_TOKEN}
       onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
       maxZoom={MAXIMUM_ZOOM}
       minZoom={MINIMUM_ZOOM}
+      ref={(el) => ((window as any).map = el)}
     >
       {HQLOCATIONS.map((location) => (
         <Marker
