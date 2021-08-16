@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 /** Enable Cross Origin **/
-const allowedOrigins = [`http://localhost:${client}`];
+const allowedOrigins = "*";
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
 };

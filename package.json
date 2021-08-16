@@ -15,7 +15,7 @@
     "client": "cd client && npm run start",
     "server": "cd server && npm run start",       
     "all-init": "npm-run-all --parallel client-init server-init",
-    "all": "npm-run-all --parallel client server",
+    "all": "npm-run-all --parallel  server client",
     "test": "npm-run-all --parallel client-test server-test"
   },
   "repository": {
