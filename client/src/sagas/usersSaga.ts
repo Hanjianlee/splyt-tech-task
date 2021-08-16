@@ -41,7 +41,7 @@ function* getNearestHQLocation(action: ActionInterface) {
     });
     yield put({
       type: USERS.GET_NEAREST_HQ_LOCATION.SUCCESS,
-      payload: { nearestHQLocation: nearestHQ },
+      payload: { HQLocation: nearestHQ },
     });
   } catch (error) {
     yield put({
