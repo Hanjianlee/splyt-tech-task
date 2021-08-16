@@ -7,6 +7,7 @@ export interface UserInterface {
   driverCount: string;
   geoPermission: string | null;
   HQLocation: {
+    country: string | null;
     longitude: number | null;
     latitude: number | null;
   };
@@ -22,6 +23,7 @@ export const initialState: UserInterface = {
   driverCount: "5",
   geoPermission: null,
   HQLocation: {
+    country: null,
     longitude: null,
     latitude: null,
   },
@@ -49,10 +51,6 @@ export default function UserReducer(state = initialState, action: Action) {
     case USERS.GET_NEAREST_HQ_LOCATION.REQUESTED:
       return {
         ...state,
-        HQLocation: {
-          longitude: 103.8522982,
-          latitude: 1.285194,
-        },
       };
     case USERS.GET_NEAREST_HQ_LOCATION.SUCCESS:
       return {
@@ -63,6 +61,7 @@ export default function UserReducer(state = initialState, action: Action) {
       return {
         ...state,
         HQLocation: {
+          country: "Singapore",
           longitude: 103.8522982,
           latitude: 1.285194,
         },
