@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "./App.scss";
 /** Components **/
 import Map from "./components/Map";
+import UserDetail from "./components/UserDetail";
 import HQSelector from "./components/HQSelector";
 import DriverCountSlider from "./components/DriverCountSlider";
 /** Actions **/
@@ -62,22 +63,17 @@ const App = (props: PropsInterface) => {
   useEffect(() => {
     getLocation().then((geoLocation) => {
       const { longitude, latitude, geoPermission } = geoLocation;
-      if (
-        props.user?.latitude !== latitude ||
-        props.user?.longitude !== longitude
-      ) {
-        if (props.updateUserLocation)
-          props.updateUserLocation({
-            longitude,
-            latitude,
-            geoPermission,
-          } as UserInterface);
-        if (props.getNearestHQLocation)
-          props.getNearestHQLocation({
-            longitude,
-            latitude,
-          } as UserInterface);
-      }
+      if (props.updateUserLocation)
+        props.updateUserLocation({
+          longitude,
+          latitude,
+          geoPermission,
+        } as UserInterface);
+      if (props.getNearestHQLocation)
+        props.getNearestHQLocation({
+          longitude,
+          latitude,
+        } as UserInterface);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigator.permissions]);
@@ -85,31 +81,36 @@ const App = (props: PropsInterface) => {
   return (
     <div className="App">
       <div className="action-container">
-        <HQSelector
-          locations={HQLOCATIONS}
-          returnToNearest={() =>
-            props.getNearestHQLocation && props.user
-              ? props.getNearestHQLocation({ ...props.user })
-              : null
-          }
-          onClick={(location) =>
-            props.updateUserHQLocation
-              ? props.updateUserHQLocation(location)
-              : null
-          }
-        />
-        <DriverCountSlider
-          maxValue={MAXIMUM_DRIVERS}
-          minValue={MINIMUM_DRIVERS}
-          count={props.user?.driverCount}
-          onChange={(event) =>
-            props.updateUserDriverCount
-              ? props.updateUserDriverCount({
-                  driverCount: event.target.value,
-                } as UserInterface)
-              : null
-          }
-        />
+        <div className="left-action-container">
+          <HQSelector
+            locations={HQLOCATIONS}
+            returnToNearest={() =>
+              props.getNearestHQLocation && props.user
+                ? props.getNearestHQLocation({ ...props.user })
+                : null
+            }
+            onClick={(location) =>
+              props.updateUserHQLocation
+                ? props.updateUserHQLocation(location)
+                : null
+            }
+          />
+          <DriverCountSlider
+            maxValue={MAXIMUM_DRIVERS}
+            minValue={MINIMUM_DRIVERS}
+            count={props.user?.driverCount}
+            onChange={(event) =>
+              props.updateUserDriverCount
+                ? props.updateUserDriverCount({
+                    driverCount: event.target.value,
+                  } as UserInterface)
+                : null
+            }
+          />
+        </div>
+        <div className="right-action-container">
+          <UserDetail user={props?.user} />
+        </div>
       </div>
       <Map
         user={props.user}

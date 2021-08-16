@@ -8,5 +8,19 @@ $fontSize: 16px;
 .action-container {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  position: absolute;
+}
+
+.left-action-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+}
+
+.right-action-container {
+  display: flex;
+  right: 0;
+  flex-direction: row;
   position: absolute;
 }

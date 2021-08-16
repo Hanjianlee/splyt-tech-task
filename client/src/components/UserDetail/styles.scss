@@ -1,21 +1,21 @@
 $backgroundColor: rgb(255, 255, 255);
 $selectBackgroundColor: rgb(107, 250, 236);
-.hq-selector {
+.user-detail {
   display: flex;
   flex-direction: column;
   z-index: 1;
   margin: 15px 20px;
   padding: 5px;
-  left: 0;
+  right: 0;
   text-align: left;
   background-color: rgba($backgroundColor, 0.9);
   border-radius: 5px;
   cursor: pointer;
-  width: 150px;
+  width: 240px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-.hq-selector-header {
+.user-detail-header {
   display: flex;
   flex-direction: row;
   padding-left: 10px;
@@ -24,23 +24,25 @@ $selectBackgroundColor: rgb(107, 250, 236);
   height: 30px;
 }
 
-.hq-selector-header-text,
-.hq-selector-header-arrow {
+.user-detail-header-text,
+.user-detail-header-arrow {
   padding-right: 10px;
 }
-.hq-selector-selections {
+.user-detail-selections.selected.user-detail-selection,
+.user-detail-denied-content-section {
   display: none;
 }
-.hq-selector:hover {
-  .hq-selector-selections {
+.user-detail:hover {
+  .user-detail-selections,
+  .user-detail-denied-content-section {
     display: inline-block;
   }
-  .hq-selector-header-arrow {
+  .user-detail-header-arrow {
     transform: rotate(90deg);
     transition: transform 0.3s ease;
   }
 }
-.hq-selector-selection {
+.user-detail-selection {
   margin: 5px;
   padding: 10px;
   border-radius: 5px;
@@ -50,6 +52,11 @@ $selectBackgroundColor: rgb(107, 250, 236);
   }
 }
 
-.selected.hq-selector-selection {
+.selected.user-detail-selection {
   background-color: $selectBackgroundColor;
+}
+
+.user-detail-denied-content {
+  margin: 5px;
+  padding: 10px;
 }

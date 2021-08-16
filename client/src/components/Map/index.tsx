@@ -81,7 +81,6 @@ export const Map = (props: PropsInterface) => {
     /** Remove Old Listener if new Listeners are added **/
     return () => window.removeEventListener("resize", handleResize);
   }, [viewport]);
-  console.log(viewport);
   return (
     <ReactMapGL
       mapStyle={REACT_APP_MAP_GL_STYLE}
