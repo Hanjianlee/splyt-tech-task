@@ -2,7 +2,7 @@
 
 ## Clone Repository
 
-- \*### Step 1
+- ### Step 1
 
 git clone https://github.com/Hanjianlee/splyt-tech-task.git
 
