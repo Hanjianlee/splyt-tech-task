@@ -3,6 +3,7 @@
 ### Notes:
 
 For a smoother Experience, Please ensure that you are not running any localhosts :)
+
 Ports in use for this App are 3000 (client), 8000(server)
 
 ### Steps to Start the Application
