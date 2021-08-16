@@ -8,13 +8,15 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-test": "cd client &&  npm run test",
+    "server-test": "cd server &&  npm run test",    
     "client-init": "cd client && npm install && npm run start",
     "server-init": "cd server && npm install && npm run start",
     "client": "cd client && npm run start",
     "server": "cd server && npm run start",       
     "all-init": "npm-run-all --parallel client-init server-init",
-    "all": "npm-run-all --parallel client server"
+    "all": "npm-run-all --parallel client server",
+    "test": "npm-run-all --parallel client-test server-test"
   },
   "repository": {
     "type": "git",
