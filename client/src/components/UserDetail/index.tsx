@@ -12,7 +12,10 @@ export const UserDetail = (props: PropsInterface) => {
         <React.Fragment>
           {props.user.geoPermission === "Granted" ? (
             <React.Fragment>
-              <div className="user-detail-header">
+              <div
+                className="user-detail-header"
+                aria-label="user-detail-granted"
+              >
                 <span className="user-detail-header-text">
                   {" "}
                   Location Access : {props.user.geoPermission}
@@ -31,7 +34,10 @@ export const UserDetail = (props: PropsInterface) => {
           ) : (
             <React.Fragment>
               {" "}
-              <div className="user-detail-header">
+              <div
+                className="user-detail-header"
+                aria-label="user-detail-denied"
+              >
                 <span className="user-detail-header-text">
                   {" "}
                   Location Access : {props.user.geoPermission}
@@ -50,7 +56,7 @@ export const UserDetail = (props: PropsInterface) => {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <div className="user-detail-header">
+          <div className="user-detail-header" aria-label="user-detail-loading">
             <span className="user-detail-header-text"> Getting Permission</span>{" "}
           </div>
         </React.Fragment>
