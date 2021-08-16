@@ -28,12 +28,13 @@ $selectBackgroundColor: rgb(107, 250, 236);
 .user-detail-header-arrow {
   padding-right: 10px;
 }
-.user-detail-selections.selected.user-detail-selection,
+
+.user-detail-granted-content-section,
 .user-detail-denied-content-section {
   display: none;
 }
 .user-detail:hover {
-  .user-detail-selections,
+  .user-detail-granted-content-section,
   .user-detail-denied-content-section {
     display: inline-block;
   }
@@ -42,7 +43,7 @@ $selectBackgroundColor: rgb(107, 250, 236);
     transition: transform 0.3s ease;
   }
 }
-.user-detail-selection {
+.user-detail-granted-content {
   margin: 5px;
   padding: 10px;
   border-radius: 5px;

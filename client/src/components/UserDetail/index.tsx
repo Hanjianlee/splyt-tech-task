@@ -22,26 +22,28 @@ export const UserDetail = (props: PropsInterface) => {
                 </span>{" "}
                 <span className="user-detail-header-arrow">{">"}</span>
               </div>
-              <div className="user-detail-selections">
-                <div className="user-detail-selection">
-                  Longitude : {props.user.longitude}
+              <div className="user-detail-granted-content-section">
+                <div className="user-detail-granted-content">
+                  Location :
+                  {props.user.latitude ? props.user.latitude.toFixed(2) : null},
+                  {props.user.longitude
+                    ? props.user.longitude.toFixed(2)
+                    : null}
                 </div>
-                <div className="user-detail-selection">
-                  Latitude : {props.user.latitude}
+                <div className="user-detail-granted-content">
+                  Nearest HQ: {props.user.HQLocation.country}
                 </div>
               </div>
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {" "}
               <div
                 className="user-detail-header"
                 aria-label="user-detail-denied"
               >
                 <span className="user-detail-header-text">
-                  {" "}
                   Location Access : {props.user.geoPermission}
-                </span>{" "}
+                </span>
                 <span className="user-detail-header-arrow">{">"}</span>
               </div>
               <div className="user-detail-denied-content-section">
