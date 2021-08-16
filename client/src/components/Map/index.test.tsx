@@ -39,34 +39,36 @@ const dummyDriver: DriverInterface = {
   pickup_eta: null,
 };
 
-test("Render Default Map GL ", () => {
-  jest.mock("mapbox-gl/dist/mapbox-gl", () => ({
-    Map: jest.fn(),
-    Marker: jest.fn().mockReturnValue({
-      setLngLat: jest.fn().mockReturnValue({
-        setPopup: jest.fn().mockReturnValue({
-          addTo: jest.fn().mockReturnValue({}),
+describe("Map Gl Tests", () => {
+  test("Render Default Map GL ", () => {
+    jest.mock("mapbox-gl/dist/mapbox-gl", () => ({
+      Map: jest.fn(),
+      Marker: jest.fn().mockReturnValue({
+        setLngLat: jest.fn().mockReturnValue({
+          setPopup: jest.fn().mockReturnValue({
+            addTo: jest.fn().mockReturnValue({}),
+          }),
         }),
       }),
-    }),
-    Popup: jest.fn().mockReturnValue({
-      setHTML: jest.fn().mockReturnValue({ on: jest.fn() }),
-    }),
-  }));
-  const utils = render(
-    <MapContext.Provider
-      // @ts-ignore
-      value={mockStaticContext}
-    >
-      <Map
-        user={userInitialState}
-        driver={dummyDriver}
-        getNearestDrivers={(payload) => payload}
-      />
-    </MapContext.Provider>
-  );
-  const map = utils.container.childNodes
-    ? (utils.container.childNodes as NodeListOf<ChildNode>)
-    : null;
-  expect(map);
+      Popup: jest.fn().mockReturnValue({
+        setHTML: jest.fn().mockReturnValue({ on: jest.fn() }),
+      }),
+    }));
+    const utils = render(
+      <MapContext.Provider
+        // @ts-ignore
+        value={mockStaticContext}
+      >
+        <Map
+          user={userInitialState}
+          driver={dummyDriver}
+          getNearestDrivers={(payload) => payload}
+        />
+      </MapContext.Provider>
+    );
+    const map = utils.container.childNodes
+      ? (utils.container.childNodes as NodeListOf<ChildNode>)
+      : null;
+    expect(map);
+  });
 });
