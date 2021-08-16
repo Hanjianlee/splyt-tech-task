@@ -9,15 +9,16 @@ function* getDrivers(action: ActionInterface) {
   try {
     const user: UserInterface = yield select(userSelector as any);
     const { HQLocation, driverCount } = user;
-    if (Number(driverCount) < 1)
+    const { longitude, latitude } = HQLocation;
+    if (Number(driverCount) < 1 || !longitude || !latitude)
       return put({ type: DRIVERS.GET_NEAREST_DRIVERS.FAILED, payload: {} });
     const response: AxiosResponse = yield call(get as any, {
       model: DRIVERS.MODEL,
       route: "getDrivers",
       query: {
         count: driverCount,
-        longitude: HQLocation.longitude,
-        latitude: HQLocation.latitude,
+        longitude: longitude,
+        latitude: latitude,
       },
     });
     if (response.status >= 400)

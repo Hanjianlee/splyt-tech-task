@@ -7,7 +7,7 @@ export function getGeolocationSuccess(
   position: GeolocationPosition
 ): GeoLocationInterface {
   const { longitude, latitude } = position.coords;
-  return { longitude, latitude, geoPermission: "success" };
+  return { longitude, latitude, geoPermission: "Granted" };
 }
 export function getGeolocationFailed(
   position: GeolocationPositionError
@@ -18,7 +18,7 @@ export function getGeolocationFailed(
   return {
     longitude: null,
     latitude: null,
-    geoPermission: "denied",
+    geoPermission: "Denied",
   };
 }
 export async function getGeolocationPermission(
