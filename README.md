@@ -2,9 +2,8 @@
 
 ### Notes:
 
-#### For a smoother Experience, Please ensure you are not running any localhosts :)
-
-#### Ports in use for this App is 3000 (client), 8000(server)
+For a smoother Experience, Please ensure that you are not running any localhosts :)
+Ports in use for this App are 3000 (client), 8000(server)
 
 ### Steps to Start the Application
 
@@ -34,8 +33,8 @@
 
   - ##### For Initial run (This step is to continue to localhost)
 
-    ###### Chrome --> click on "Advanced" --> "Proceed to localhost:3000(unsafe)"
+    Chrome --> click on "Advanced" --> "Proceed to localhost:3000(unsafe)"
 
-    ###### Firefox --> click on "Advanced" --> "Proceed to localhost:3000(unsafe)"
+    Firefox --> click on "Advanced" --> "Proceed to localhost:3000(unsafe)"
 
-    ###### Safari --> click on "Show Details" --> "Visit the website" --> "Visit Website"
+    Safari --> click on "Show Details" --> "Visit the website" --> "Visit Website"
