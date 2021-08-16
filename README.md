@@ -12,23 +12,23 @@ Ports in use for this App are 3000 (client), 8000(server)
 
   - ##### Clone Repository
 
-    git clone https://github.com/Hanjianlee/splyt-tech-task.git
+    $ git clone https://github.com/Hanjianlee/splyt-tech-task.git
 
 - #### Step 2
 
   - ##### Install Initial Package
 
-    npm install
+    $ npm install
 
 - #### Step 3
 
   - ##### For Initial run (This step will install all necessary packages)
 
-    npm run all-init
+    $ npm run all-init
 
   - ##### For subsequent runs
 
-    npm run all
+    $ npm run all
 
 - #### Step 4
 
@@ -39,3 +39,13 @@ Ports in use for this App are 3000 (client), 8000(server)
     Firefox --> click on "Advanced" --> "Proceed to localhost:3000(unsafe)"
 
     Safari --> click on "Show Details" --> "Visit the website" --> "Visit Website"
+
+### Steps to Run the Tests Application
+
+#### Assuming that you have ran "npm run all-init"
+
+- #### Step 1
+
+  - ##### Execute Tests
+
+    $ npm run all-test
