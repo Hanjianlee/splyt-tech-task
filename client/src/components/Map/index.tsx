@@ -19,7 +19,8 @@ import {
   DEFAULT_ZOOM,
 } from "../../utils/constants";
 import "mapbox-gl/dist/mapbox-gl.css";
-/** Temporary work around to let build version function as Babel has some issues loading the modules **/
+/** Temporary work around to let build version to work
+ *  as Babel has some issues loading the modules **/
 // eslint-disable-next-line
 import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
 // @ts-ignore
@@ -52,36 +53,39 @@ export const Map = (props: PropsInterface) => {
     zoom: DEFAULT_ZOOM,
   });
 
-  /** Update Location if User's location is updated**/
+  /** Update Viewport Location if User's location is updated **/
   useEffect(() => {
-    const latitude: number = props.user?.HQLocation.latitude
-      ? props.user?.HQLocation.latitude
-      : viewport.latitude;
-    const longitude: number = props.user?.HQLocation.longitude
-      ? props.user?.HQLocation.longitude
-      : viewport.longitude;
-    if (viewport.latitude !== latitude || viewport.longitude !== longitude)
+    const { latitude, longitude } = props.user?.HQLocation
+      ? props.user?.HQLocation
+      : viewport;
+    if (
+      (viewport.latitude !== latitude || viewport.longitude !== longitude) &&
+      longitude &&
+      latitude
+    )
       setViewport({ ...viewport, longitude, latitude } as any);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.user?.HQLocation]);
+  }, [props.user?.HQLocation.longitude, props.user?.HQLocation.latitude]);
 
   /** On Window Resize **/
   useEffect(() => {
     function handleResize(event: Event) {
-      console.log("Resize", viewport.longitude);
-      const w = event.target as Window;
-      setViewport({ ...viewport, width: w.innerWidth, height: w.innerHeight });
+      const window = event.target as Window;
+      setViewport({
+        ...viewport,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
     }
     window.addEventListener("resize", handleResize);
+    /** Remove Old Listener if new Listeners are added **/
     return () => window.removeEventListener("resize", handleResize);
   }, [viewport]);
-
+  console.log(viewport);
   return (
     <ReactMapGL
       mapStyle={REACT_APP_MAP_GL_STYLE}
       {...viewport}
-      width="100vw"
-      height="100vh"
       mapboxApiAccessToken={REACT_APP_MAP_GL_TOKEN}
       onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
       maxZoom={MAXIMUM_ZOOM}

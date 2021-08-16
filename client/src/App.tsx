@@ -26,6 +26,7 @@ import {
   getGeolocationPermission,
   GeoLocationInterface,
 } from "./utils/permissions";
+
 interface PropsInterface {
   user?: UserInterface;
   driver?: DriverInterface;
@@ -48,6 +49,7 @@ const App = (props: PropsInterface) => {
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.getNearestDrivers]);
+
   /** Get Location 
    Need to Check if user allows location access **/
   const getLocation = async (): Promise<GeoLocationInterface> => {
@@ -56,10 +58,10 @@ const App = (props: PropsInterface) => {
     console.log({ longitude, latitude, geoPermission });
     return { longitude, latitude, geoPermission };
   };
+
   useEffect(() => {
     getLocation().then((geoLocation) => {
       const { longitude, latitude, geoPermission } = geoLocation;
-      console.log("Request");
       if (
         props.user?.latitude !== latitude ||
         props.user?.longitude !== longitude
@@ -79,7 +81,7 @@ const App = (props: PropsInterface) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigator.permissions]);
-  console.log(props.user);
+
   return (
     <div className="App">
       <div className="action-container">
