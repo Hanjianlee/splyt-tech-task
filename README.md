@@ -69,4 +69,5 @@ Ports in use for this App are 3000 (client), 8000(server)
     - ##### (Although no model and view was created it can be integrated in the future with ease )
 
 ### Application Architecture
-![splyt-tech-task-Page-2](https://user-images.githubusercontent.com/36333538/129743068-42add9d6-aef0-4a33-a369-d5452e740344.png)
+![splyt-tech-task-Page-2 (1)](https://user-images.githubusercontent.com/36333538/129743600-ff5aebe2-fe6a-4b21-a4ce-7b9591838608.png)
+
