@@ -12,25 +12,25 @@ Ports in use for this App are 3000 (client), 8000(server)
 
   - ##### Clone Repository
     ```console
-    $ git clone https://github.com/Hanjianlee/splyt-tech-task.git
+    git clone https://github.com/Hanjianlee/splyt-tech-task.git
     ```
 
 - #### Step 2
 
   - ##### Install Initial Package
     ```console
-    $ npm install
+    npm install
     ```
 
 - #### Step 3
 
   - ##### For Initial run (This step will install all necessary packages)
     ```console
-    $ npm run all-init
+    npm run all-init
     ```
   - ##### For subsequent runs
     ```console
-    $ npm run all
+    npm run all
     ```
 
 - #### Step 4
@@ -51,5 +51,5 @@ Ports in use for this App are 3000 (client), 8000(server)
 
   - ##### Execute Tests
     ```console
-    $ npm run all-test
+    npm run all-test
     ```
