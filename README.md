@@ -54,6 +54,11 @@ Google Chrome
     npm run all-test
     ```
 
+### UI Visual Aid
+   #### Top Left Shows the switches to switch between HQ
+   #### The Second Item Allows Users to Adjust the Taxi Count
+   #### The Top right Item Allows Users to check location access details 
+
 ## Technology Stack Info  
 ### Languages Used 
   - #### Typescript
