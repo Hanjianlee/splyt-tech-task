@@ -16,6 +16,14 @@ export const DriverCountSlider = (props: PropsInterface) => {
   };
   return (
     <div className="driver-count-slider-container">
+      <img
+        className="taxi-marker-svg"
+        src="/image2vector.svg"
+        alt="/image2vector.svg"
+        style={{
+          transform: `rotate(-90deg)`,
+        }}
+      />
       <p className="driver-count-slider-header" aria-label="driver-count-title">
         Taxi Count
       </p>
