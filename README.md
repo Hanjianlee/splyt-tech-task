@@ -1,10 +1,9 @@
 ## Splyt Tech Task App
 
-### Notes:
+### Requirements:
 
-For a smoother Experience, Please ensure that you are not running any localhosts :)
-
-Ports in use for this App are 3000 (client), 8000(server)
+Please ensure that there are on instances running on 3000,8000.
+Ports in use are for this App are 3000 (client), 8000(server)
 
 ### Steps to Start the Application
 
@@ -17,12 +16,19 @@ Ports in use for this App are 3000 (client), 8000(server)
 
 - #### Step 2
 
+  - ##### Change Directory in to splyt-tech-task (or directory name given when cloned)
+    ```console
+    cd splyt-tech-task
+    ```
+
+- #### Step 3
+
   - ##### Install Initial Package
     ```console
     npm install
     ```
 
-- #### Step 3
+- #### Step 4
 
   - ##### For Initial run (This step will install all necessary packages)
     ```console
