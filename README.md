@@ -33,16 +33,6 @@ Ports in use for this App are 3000 (client), 8000(server)
     npm run all
     ```
 
-- #### Step 4
-
-  - ##### For Initial run (This step is to continue to localhost)
-
-    Chrome --> click on "Advanced" --> "Proceed to localhost:3000(unsafe)"
-
-    Firefox --> click on "Advanced" --> "Proceed to localhost:3000(unsafe)"
-
-    Safari --> click on "Show Details" --> "Visit the website" --> "Visit Website"
-
 ### Steps to Run the Tests Application
 
 #### Assuming that you have ran "npm run all-init"
@@ -53,3 +43,29 @@ Ports in use for this App are 3000 (client), 8000(server)
     ```console
     npm run all-test
     ```
+
+## Technology Stack Info  
+### Languages Used 
+  - #### Typescript
+
+### Frontend 
+  - #### create-react-app typescript - Frontend Framework
+  - #### sass-css - styling preprocessor  
+  - #### jest - For unit Tests
+  - #### axios - To handle Backend Requests
+  - #### react-redux - For state management 
+  - #### react-saga - For Redux Middleware 
+  - #### react-map-gl - For Map Creation 
+
+### Backend
+  - #### express-typescript - Backend Framework 
+  - #### axios - To handle Requests to microservices 
+  - #### cors - To handle CORS Origin Requests 
+  - #### babel - To enable ES6 
+  - #### ts-node - To run express with Typescript 
+
+### Design Patterns
+  - #### MVC Architecture for Backend with Express 
+    - ##### (Although no model and view was created it can be integrated in the future with ease )
+
+### Application Architecture
