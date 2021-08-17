@@ -2,8 +2,12 @@
 
 ### Requirements:
 
-Please ensure that there are on instances running on 3000,8000.
+No instances running on 3000,8000. <br/>
 Ports in use are for this App are 3000 (client), 8000(server)
+
+### Preffered Browser 
+
+Google Chrome 
 
 ### Steps to Start the Application
 
@@ -76,4 +80,7 @@ Ports in use are for this App are 3000 (client), 8000(server)
 
 ### Application Architecture
 ![splyt-tech-task-Page-2 (1)](https://user-images.githubusercontent.com/36333538/129743600-ff5aebe2-fe6a-4b21-a4ce-7b9591838608.png)
+
+### Constraints 
+  - #### This application was built on windows hence Safari faces some issue with obtaining location accesss
 
