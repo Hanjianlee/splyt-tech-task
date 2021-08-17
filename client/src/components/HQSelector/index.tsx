@@ -22,7 +22,7 @@ export const HQSelector = (props: PropsInterface) => {
     latitude: 0,
     longitude: 0,
   });
-  
+
   /** If The Location props is updated, it will be re-rendered with latest Array**/
   useEffect(() => {
     const locations = props.locations ? props.locations : [];
@@ -44,6 +44,11 @@ export const HQSelector = (props: PropsInterface) => {
   return (
     <div className="hq-selector" aria-label="hq-selector">
       <div className="hq-selector-header">
+        <img
+          className="splyt-marker-svg"
+          src="/splytMarker.svg"
+          alt="/splytMarker.svg"
+        />
         <span className="hq-selector-header-text">{selected.country}</span>{" "}
         <span className="hq-selector-header-arrow">{">"}</span>
       </div>
