@@ -58,7 +58,7 @@ Google Chrome
    #### Top Left Shows the switches to switch between HQ
    #### The Second Item Allows Users to Adjust the Taxi Count
    #### The Top right Item Allows Users to check location access details 
-
+   ![splyt-tech-task-ui](https://user-images.githubusercontent.com/36333538/129752092-c4aee93a-5b89-4610-ae2e-c457dffe108f.PNG)
 ## Technology Stack Info  
 ### Languages Used 
   - #### Typescript
