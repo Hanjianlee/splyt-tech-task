@@ -52,9 +52,9 @@ Google Chrome
   - ##### Execute Tests
     ```console
     npm run all-test
-    ```
+    ``` 
 
-### UI Visual Aid
+### UI-UX Visual Information
    #### Top Left Shows the switches to switch between HQ
    #### The Second Item Allows Users to Adjust the Taxi Count
    #### The Top right Item Allows Users to check location access details 
